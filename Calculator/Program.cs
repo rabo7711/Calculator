@@ -1,47 +1,45 @@
 ﻿CalculatorApp();
-    void CalculatorApp()
+void CalculatorApp()
 {
-    int firstNumber = 0;
-    int secondNumber = 0;
-    int result = 0;
-    int choice = 0;
-    Console.WriteLine("type 1st number, and then enter");
-    firstNumber = Convert.ToInt32(Console.ReadLine());
-
-    Console.WriteLine("type 2nd number, and then enter");
-    secondNumber = Convert.ToInt32(Console.ReadLine());
-
-    Console.WriteLine("Choose an option from the following list");
-    Console.WriteLine("1 - Add");
-    Console.WriteLine("2 - Subtract");
-    Console.WriteLine("3 - Divide");
-    Console.WriteLine("4 - Multiply");
-
-    choice = Convert.ToInt32(Console.ReadLine());
-    if (choice == 1)
+    try
     {
-        result = firstNumber + secondNumber;
-        Console.WriteLine($"Adding {firstNumber} and {secondNumber} equals {result}");
+        Console.Write("Enter the first number: ");
+        int FirstNumber = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter the second number: ");
+        int SecondNumber = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter the operation (+,-,*,/): ");
+        char Operation = Convert.ToChar(Console.ReadLine());
+        int result=0;
+        switch (Operation)
+        {
+            case '+':
+                result = FirstNumber + SecondNumber;
+                break;
+            case '-':
+                result = FirstNumber - SecondNumber;
+                break;
+            case '*':
+                result = FirstNumber * SecondNumber;
+                break;
+            case '/':
+                result = FirstNumber / SecondNumber;
+                break;
+            default:
+                Console.WriteLine("Invalid operation");
+                return;
+        }
+        Console.WriteLine($"Result: {result}");
     }
-    else if (choice == 2)
+    catch(FormatException ex)
     {
-        result = firstNumber - secondNumber;
-        Console.WriteLine($"Subtracting {firstNumber} and {secondNumber} equals {result}");
+        Console.WriteLine("Please enter a valid number.");
     }
-    else if (choice == 3)
+    catch (DivideByZeroException ex)
     {
-        result = firstNumber / secondNumber;
-        Console.WriteLine($"Dividing {firstNumber} and {secondNumber} equals {result}");
+        Console.WriteLine($"You cannot divide by zero.");
     }
-    else if (choice == 4)
+    finally
     {
-        result = firstNumber * secondNumber;
-        Console.WriteLine($"Multiplying {firstNumber} and {secondNumber} equals {result}");
-    }
-    else
-    {
-        Console.WriteLine("You did not select a valid number between 1 and 4");
+        Console.WriteLine("Operation Completed.");
     }
 }
-
-
